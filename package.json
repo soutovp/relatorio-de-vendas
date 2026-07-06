@@ -1,0 +1,32 @@
+{
+  "name": "relatorio_vendas",
+  "version": "1.0.0",
+  "description": "Solução para gerar relatórios de vendas à partir da integração com a API de E-commerce.",
+  "keywords": [
+    "relatorio",
+    "de",
+    "vendas",
+    "ecommerce"
+  ],
+  "license": "ISC",
+  "author": "Fernando Souto",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "tsx watch app.ts",
+    "test": "node assets/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.0",
+    "tsx": "^4.23.0",
+    "typescript": "^6.0.3"
+  }
+}
