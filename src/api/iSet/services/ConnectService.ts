@@ -52,7 +52,7 @@ export default class ConnectService{
     }
 
     async post(url: string, body?: Object, queryParams?: string){
-        
+        const _url = process.env.ISET_API_URL + url + (queryParams ? '/'+queryParams : '');
         const tokenStatus = await this.checkTokenExpiration();
         if(!tokenStatus){
             await this.generateToken('oauth');
@@ -62,17 +62,17 @@ export default class ConnectService{
         const token = await handleToken.getToken();
         const options = {
             method: 'POST',
-            header:{
+            headers:{
                 accept: 'application/json',
-                'content-type': 'application/json',
-                'access-token': token,
+                'Content-Type': 'application/json',
+                'access-token': token?.token || '',
             },
             body: JSON.stringify(body),
         }
-
         try{
-            const response = await fetch(process.env.ISET_API_URL + url + queryParams ? `/${queryParams}` : '', options);
+            const response = await fetch(_url, options);
             const responseData = await response.json();
+            // console.log('Response data:\n'+JSON.stringify(responseData));
             if(responseData.status === 200){
                 return responseData;
             }else{
